@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<s:DataRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:s="library://ns.adobe.com/flex/spark"
+                width="100%"
+                height="100%"
+                visible="{!!_info}">
+
+    <fx:Script>
+        <![CDATA[
+        import eu.claudius.iacob.testing.ui.TestLibraryFonts;
+
+        import ro.ciacob.utils.Objects;
+
+        [Bindable]
+        private var _info:String;
+
+        override public function set data(value:Object):void {
+            super.data = value;
+            if (value && !Objects.isEmpty(value)) {
+                _info = Objects.describeObject(value);
+            } else {
+                _info = null;
+            }
+        }
+        ]]>
+    </fx:Script>
+
+    <!-- Log -->
+    <s:Label text="Additional details:"
+             left="10"
+             fontSize="13"
+             fontFamily="{TestLibraryFonts.NOTO_SANS_EMBEDDED}"/>
+    <s:TextArea id="logsTextArea" text="{_info}"
+                lineHeight="22"
+                fontSize="15"
+                fontFamily="Consolas"
+                editable="false"
+                left="10"
+                width="{width - 16}"
+                top="20"
+                bottom="10"/>
+
+</s:DataRenderer>
